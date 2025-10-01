@@ -7,7 +7,7 @@ Shirts are in different sizes and colors. As described in the Size.cs class, the
 
 The search specifies a range of sizes and colors in SearchOptions.cs. For example, for small, medium and red the search engine should return shirts that are either small or medium in size and are red in color. In this case, the SearchOptions should look like:
 
-```
+``` cs
 {
     Sizes = List<Size> {Size.Small, Size.Medium},
     Colors = List<Color> {Color.Red}
@@ -15,7 +15,7 @@ The search specifies a range of sizes and colors in SearchOptions.cs. For exampl
 ```
 
 The results should include, as well as the shirts matching the search options, the total count for each search option taking into account the options that have been selected. For example, if there are two shirts, one small and red and another medium and blue, if the search options are small size and red color, the results (captured in SearchResults.cs) with total count for each option should be:
-```
+``` cs
 {
     Shirts = List<Shirt> { SmallRedShirt },
     SizeCounts = List<SizeCount> { Small(1), Medium(0), Large(0)},

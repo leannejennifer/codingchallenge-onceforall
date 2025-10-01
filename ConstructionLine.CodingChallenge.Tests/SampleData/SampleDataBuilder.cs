@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ConstructionLine.CodingChallenge.Models;
 
 namespace ConstructionLine.CodingChallenge.Tests.SampleData
 {
@@ -8,15 +9,12 @@ namespace ConstructionLine.CodingChallenge.Tests.SampleData
     {
         private readonly int _numberOfShirts;
 
-        private readonly Random _random = new Random();
+        private readonly Random _random = new ();
 
-        
         public SampleDataBuilder(int numberOfShirts)
         {
             _numberOfShirts = numberOfShirts;
-
         }
-
 
         public List<Shirt> CreateShirts()
         {
@@ -24,16 +22,13 @@ namespace ConstructionLine.CodingChallenge.Tests.SampleData
                 .Select(i => new Shirt(Guid.NewGuid(), $"Shirt {i}", GetRandomSize(), GetRandomColor()))
                 .ToList();
         }
-
        
         private Size GetRandomSize()
         {
-            
             var sizes = Size.All;
             var index = _random.Next(0, sizes.Count);
             return sizes.ElementAt(index);
         }
-
 
         private Color GetRandomColor()
         {

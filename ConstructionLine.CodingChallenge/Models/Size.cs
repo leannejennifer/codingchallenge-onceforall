@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ConstructionLine.CodingChallenge
+namespace ConstructionLine.CodingChallenge.Models
 {
     public class Size
     {
@@ -15,18 +15,15 @@ namespace ConstructionLine.CodingChallenge
             Name = name;
         }
 
-
-        public static Size Small = new Size(Guid.NewGuid(), "Small");
-        public static Size Medium = new Size(Guid.NewGuid(), "Medium");
-        public static Size Large = new Size(Guid.NewGuid(), "Large");
-
+        public static readonly Size Small = new (Guid.NewGuid(), "Small");
+        public static readonly Size Medium = new (Guid.NewGuid(), "Medium");
+        public static readonly Size Large = new (Guid.NewGuid(), "Large");
 
         public static List<Size> All = 
-            new List<Size>
-            {
+            [
                 Small,
                 Medium,
                 Large
-            };
+            ];
     }
 }

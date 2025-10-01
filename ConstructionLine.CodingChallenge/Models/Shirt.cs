@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConstructionLine.CodingChallenge
+namespace ConstructionLine.CodingChallenge.Models
 {
     public class Shirt
     {

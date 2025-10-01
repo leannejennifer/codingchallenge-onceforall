@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using ConstructionLine.CodingChallenge.Models;
+using ConstructionLine.CodingChallenge.Services;
 using ConstructionLine.CodingChallenge.Tests.SampleData;
 using NUnit.Framework;
 
@@ -15,14 +17,12 @@ namespace ConstructionLine.CodingChallenge.Tests
         [SetUp]
         public void Setup()
         {
-            
             var dataBuilder = new SampleDataBuilder(50000);
 
             _shirts = dataBuilder.CreateShirts();
 
             _searchEngine = new SearchEngine(_shirts);
         }
-
 
         [Test]
         public void PerformanceTest()
@@ -32,7 +32,7 @@ namespace ConstructionLine.CodingChallenge.Tests
 
             var options = new SearchOptions
             {
-                Colors = new List<Color> { Color.Red }
+                Colors = [ Color.Red ]
             };
 
             var results = _searchEngine.Search(options);
@@ -40,9 +40,12 @@ namespace ConstructionLine.CodingChallenge.Tests
             sw.Stop();
             Console.WriteLine($"Test fixture finished in {sw.ElapsedMilliseconds} milliseconds");
 
-            AssertResults(results.Shirts, options);
-            AssertSizeCounts(_shirts, options, results.SizeCounts);
-            AssertColorCounts(_shirts, options, results.ColorCounts);
+            Assert.Multiple(() => {
+                AssertResults(results.Shirts, options);
+                AssertSizeCounts(_shirts, options, results.SizeCounts);
+                AssertColorCounts(_shirts, options, results.ColorCounts);
+                AssertSpeedIsAcceptable(sw.ElapsedMilliseconds);
+            });
         }
     }
 }
